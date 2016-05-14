@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
 
-from account_resource import AccountResource
-from transaction_resource import TransactionResource
+from .account_resource import AccountResource
+from .transaction_resource import TransactionResource
 
