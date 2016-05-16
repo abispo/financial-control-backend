@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
-from flask.ext.classy import FlaskView, route
+from flask.ext.classy import FlaskView
 
 class AccountResource(FlaskView):
     def index(self):
-        return "index"
+        return "account"
