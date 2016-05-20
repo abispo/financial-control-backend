@@ -4,4 +4,4 @@ from flask.ext.classy import FlaskView
 
 class AccountResource(FlaskView):
     def index(self):
-        return "account"
+        return "account index"

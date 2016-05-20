@@ -4,4 +4,4 @@ from flask.ext.classy import FlaskView
 
 class TransactionResource(FlaskView):
     def index(self):
-        return "transaction"
+        return "transaction index"
