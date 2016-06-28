@@ -2,4 +2,4 @@
 
 from api import api
 
-api.run()
+api.run(debug=True)
