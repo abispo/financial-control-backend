@@ -1,5 +1,6 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-from api import api
+from app import api
 
-api.run()
+if __name__ == '__main__':
+    api.run()
