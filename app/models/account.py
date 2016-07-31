@@ -12,9 +12,6 @@ class Account(db.Model):
         self.name = name
         self.balance = balance
 
-    def __repr__(self):
-        return "<Account(name='%s', balance='%s')>" % (self.name, self.balance)
-
     @property
     def serialize(self):
         return {

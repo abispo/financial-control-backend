@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from flask import jsonify, request, json
+from flask import jsonify, request
 from flask.views import MethodView
 from app.models import db, Account
-from collections import namedtuple
 
 class AccountResource(MethodView):
 

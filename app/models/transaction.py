@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from app.models import db
+from datetime import datetime
 
 class Transaction(db.Model):
 
@@ -14,9 +15,18 @@ class Transaction(db.Model):
     debited_account = db.relationship("Account", foreign_keys=[debited_account_id])
     credited_account = db.relationship("Account", foreign_keys=[credited_account_id])
 
-    def __init__(self, timestamp, amount):
-        self.timestamp = timestamp
+    def __init__(self, debited_account_id, credited_account_id, amount, timestamp=datetime.today()):
+        self.debited_account_id = debited_account_id
+        self.credited_account_id = credited_account_id
         self.amount = amount
+        self.timestamp = timestamp
 
-    def __repr__(self):
-        return "<Transaction(timestamp='%s', amount='%s')>" % (self.timestamp, self.amount)
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'debited_account_id': self.debited_account_id,
+            'credited_account_id': self.credited_account_id,
+            'amount': self.amount,
+            'timestamp': self.timestamp
+        }
