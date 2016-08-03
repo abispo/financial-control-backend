@@ -29,7 +29,7 @@ class AccountResource(MethodView):
 
     def put(self, account_id):
         json_acc = request.get_json()
-        n_rows_affected = db.session.query(Account).filter_by(id=account_id).update((json_acc))
+        n_rows_affected = db.session.query(Account).filter_by(id=account_id).update(json_acc)
         db.session.commit()
 
         return jsonify(rows_affected=n_rows_affected)

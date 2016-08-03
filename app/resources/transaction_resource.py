@@ -41,7 +41,17 @@ class TransactionResource(MethodView):
         return jsonify({})
 
     def delete(self, transaction_id):
-        return jsonify({})
+        n_rows_affected = db.session.query(Transaction).filter_by(
+            id=transaction_id
+        ).delete()
+        db.session.commit()
+        return jsonify(rows_affected=n_rows_affected)
 
     def put(self, transaction_id):
-        return jsonify({})
+        json_trns = request.get_json()
+        n_rows_affected = db.session.query(Transaction).filter_by(
+            id=transaction_id
+        ).update(json_trns)
+        session.commit()
+
+        return jsonify(rows_affected=n_rows_affected)
