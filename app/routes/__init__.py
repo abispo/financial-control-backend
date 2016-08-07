@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-__all__ = ['account_view', 'transaction_view']
+__all__ = ['bp_account', 'bp_transaction']
 
-from .account_routes import account_view
-from .transaction_routes import transaction_view
+from .account_routes import bp_account
+from .transaction_routes import bp_transaction
