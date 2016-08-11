@@ -13,23 +13,30 @@ class AccountResource(MethodView):
 
         return jsonify(
             accounts=[acc.serialize for acc in accs.all()]
-        )
+        ), 200
 
     def post(self):
         json_acc = request.get_json()
         acc = Account(name=json_acc['name'], balance=json_acc['balance'])
         db.session.add(acc)
         db.session.commit()
-        return jsonify({})
+        db.session.refresh(acc)
+
+        return jsonify(
+            accounts=[acc.serialize]
+        ), 201
 
     def delete(self, account_id):
-        n_rows_affected = db.session.query(Account).filter_by(id=account_id).delete()
+        db.session.query(Account).filter_by(id=account_id).delete()
         db.session.commit()
-        return jsonify(rows_affected=n_rows_affected)
+
+        return '', 204
 
     def put(self, account_id):
         json_acc = request.get_json()
-        n_rows_affected = db.session.query(Account).filter_by(id=account_id).update(json_acc)
+        acc = db.session.query(Account).filter_by(id=account_id).first()
+        acc.name = json_acc['name']
+        acc.balance = json_acc['balance']
         db.session.commit()
 
-        return jsonify(rows_affected=n_rows_affected)
+        return jsonify(accounts=[acc.serialize]), 200
