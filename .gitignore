@@ -25,3 +25,7 @@ go.work
 
 # Environment files
 .env
+
+tmp/*
+app/*
+.devcontainer/
