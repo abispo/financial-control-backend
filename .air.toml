@@ -2,16 +2,16 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-cmd = "go build -o /financial-control-backend app/server.go
-bin = "/"
 
-full_bin = "/financial-control-backend"
+cmd = "go build -gcflags='all=-N -l' -o ./tmp/main ."
+
+bin = "tmp/main"
+
+full_bin = "dlv exec --accept-multiclient --log --headless --continue --listen :2345 --api-version 2 ./tmp/main"
+
+include_ext = ["go"]
 
 log = "air_errors.log"
-
-include_ext = ["go", "yaml"]
-
-delay = 1000
 
 [log]
 time = true
