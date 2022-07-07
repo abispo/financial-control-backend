@@ -9,5 +9,6 @@ import (
 type HealthController struct{}
 
 func (h HealthController) Status(c *gin.Context) {
-	c.String(http.StatusOK, "OK")
+	c.Header("Cache-Control", "no-cache")
+	c.JSON(http.StatusOK, gin.H{"message": "OK"})
 }

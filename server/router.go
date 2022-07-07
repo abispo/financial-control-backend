@@ -7,6 +7,7 @@ import (
 
 func NewRouter() *gin.Engine {
 	router := gin.New()
+	router.SetTrustedProxies(nil)
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 
