@@ -6,10 +6,12 @@ import (
 )
 
 func NewRouter() *gin.Engine {
-	router := gin.New()
+	router := gin.Default()
 	router.SetTrustedProxies(nil)
-	router.Use(gin.Logger())
-	router.Use(gin.Recovery())
+
+	v1 := router.Group("")
+	v1.Use(gin.Logger())
+	v1.Use(gin.Recovery())
 
 	health := new(controllers.HealthController)
 
