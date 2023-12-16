@@ -1,10 +1,21 @@
-import express, { Express, Request, Response} from "express";
+import express, { Express, NextFunction, Request, Response} from "express";
 import dotenv from "dotenv";
+
+import authRoutes from "./auth/routes";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+
+app.use(express.json());
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+    res.setHeader("Content-Type", "application/json");
+    next();
+})
+
+app.use("/auth", authRoutes);
 
 app.get("/healthcheck", (req: Request, res: Response) => {
     res.send({
@@ -15,7 +26,7 @@ app.get("/healthcheck", (req: Request, res: Response) => {
 })
 
 app.get("/", (req: Request, res: Response) => {
-    res.send("OK")
+    res.json({message: "OK"})
 });
 
 app.listen(port, () => {
