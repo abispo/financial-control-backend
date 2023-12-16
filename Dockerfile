@@ -42,7 +42,7 @@ RUN go mod download \
 RUN go build -o financial-control-backend -a .
 
 ### Production
-FROM alpine:latest
+FROM alpine:3.18.3
 
 RUN apk update \
     && apk add --no-cache \
